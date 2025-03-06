@@ -1,0 +1,46 @@
+syntax="proto3";
+package user;
+option go_package="./proto";
+
+service UserService{
+    rpc CreateUser(CreateUserReq) returns (Response);
+    rpc GetUser(UserReq) returns (User);
+    rpc UpdateSal(UpdateReq) returns(Response);
+    rpc DeleteUser(UserReq) returns (Response);
+    rpc GetUsers(Empty) returns (UsersResponse);
+    rpc ApplyBonus(BonusReq) returns (BonusResponse);
+}
+message Empty{}
+message CreateUserReq{
+    string id=1;
+    string name=2;
+    string department=3;
+    string salary=4;
+}
+message Response{
+    string message=1;
+}
+message UserReq{
+    string id=1;
+}
+message User{
+    string id=1;
+    string name=2;
+    string department=3;
+    string salary=4;
+}
+message UsersResponse{
+    repeated User users=1;
+}
+message UpdateReq{
+    string id=1;
+    string salary=2;
+}
+message BonusReq{
+    string id=1;
+    int32 percent=2;
+}
+message BonusResponse{
+    string message=1;
+    int32 newsal=2;
+}
